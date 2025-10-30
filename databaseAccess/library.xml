@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+    <jdbc>
+        <driver>org.postgresql.Driver</driver>
+        <url>jdbc:postgresql://localhost:15432/postgres</url>
+        <user>postgres</user>
+        <password>postgres</password>
+    </jdbc>
+
+    <generator>
+        <name>org.jooq.codegen.KotlinGenerator</name>
+
+        <database>
+            <name>org.jooq.meta.postgres.PostgresDatabase</name>
+            <inputSchema>public</inputSchema>
+            <includes>.*</includes>
+            <excludes/>
+        </database>
+
+        <target>
+            <packageName>au.concepta.sakila.database</packageName>
+            <directory>./src/main/kotlin</directory>
+        </target>
+    </generator>
+</configuration>

@@ -30,5 +30,6 @@ dependencyResolutionManagement {
     }
 }
 
+include(":databaseAccess")
 include(":server")
 include(":shared")

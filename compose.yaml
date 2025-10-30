@@ -1,0 +1,7 @@
+services:
+  database:
+    build: docker
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "15432:5432"

@@ -4,8 +4,9 @@ plugins {
     application
 }
 
-group = "com.example.demo"
-version = "1.0.0"
+group = "au.concepta.sakila"
+version = "0.0.1"
+
 application {
     mainClass.set("com.example.demo.ApplicationKt")
 
@@ -15,9 +16,11 @@ application {
 
 dependencies {
     implementation(projects.shared)
+    implementation(projects.databaseAccess)
     implementation(libs.logback)
     implementation(libs.ktor.serverCore)
     implementation(libs.ktor.serverNetty)
+    implementation(libs.postgres.driver)
     testImplementation(libs.ktor.serverTestHost)
     testImplementation(libs.kotlin.testJunit)
 }
