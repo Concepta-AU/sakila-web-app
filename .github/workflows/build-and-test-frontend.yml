@@ -3,8 +3,8 @@ name: Build and Test Frontend
 on:
   push:
     paths:
-      - './shared'
-      - './webApp'
+      - './shared/**'
+      - './webApp/**'
       - './.github/workflows/build-and-test-frontend.yml'
 
 jobs:

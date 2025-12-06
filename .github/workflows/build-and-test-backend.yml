@@ -3,9 +3,9 @@ name: Build and Test Backend
 on:
   push:
     paths:
-      - './shared'
-      - './server'
-      - './databaseAccess'
+      - './shared/**'
+      - './server/**'
+      - './databaseAccess/**'
       - './.github/workflows/build-and-test-backend.yml'
 
 jobs:
