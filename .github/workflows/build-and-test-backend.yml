@@ -1,7 +1,12 @@
 name: Build and Test Backend
 
 on:
-  push
+  push:
+    paths:
+      - './shared'
+      - './server'
+      - './databaseAccess'
+      - './.github/workflows/build-and-test-backend.yml'
 
 jobs:
   build-and-test:
