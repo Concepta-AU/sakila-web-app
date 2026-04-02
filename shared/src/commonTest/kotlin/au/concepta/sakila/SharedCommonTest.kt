@@ -1,4 +1,4 @@
-package com.example.demo
+package au.concepta.sakila
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

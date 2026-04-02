@@ -1,4 +1,4 @@
-package com.example.demo
+package au.concepta.sakila
 
 interface Platform {
     val name: String

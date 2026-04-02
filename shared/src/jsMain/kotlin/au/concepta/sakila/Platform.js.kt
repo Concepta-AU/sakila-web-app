@@ -1,4 +1,4 @@
-package com.example.demo
+package au.concepta.sakila
 
 class JsPlatform : Platform {
     override val name: String = "Web with Kotlin/JS"

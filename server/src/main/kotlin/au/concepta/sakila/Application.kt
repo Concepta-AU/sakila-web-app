@@ -1,4 +1,4 @@
-package com.example.demo
+package au.concepta.sakila
 
 import au.concepta.sakila.database.tables.references.STORE
 import io.ktor.server.application.*

@@ -1,4 +1,4 @@
-package com.example.demo
+package au.concepta.sakila
 
 import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
