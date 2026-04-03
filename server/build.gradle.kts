@@ -17,10 +17,12 @@ application {
 dependencies {
     implementation(projects.shared)
     implementation(projects.databaseAccess)
+    implementation(libs.hikari)
     implementation(libs.logback)
     implementation(libs.ktor.serverCore)
     implementation(libs.ktor.serverNetty)
     implementation(libs.postgres.driver)
     testImplementation(libs.ktor.serverTestHost)
     testImplementation(libs.kotlin.testJunit)
+    testImplementation(libs.testcontainers.postgres)
 }

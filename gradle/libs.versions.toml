@@ -1,19 +1,23 @@
 [versions]
+hikari = "7.0.2"
 kotlin = "2.2.20"
 ktor = "3.3.1"
 logback = "1.5.20"
 postgres = "42.7.8"
+testcontainers-postgres = "2.0.4"
 
 [libraries]
+hikari = { module = "com.zaxxer:HikariCP", version.ref = "hikari" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 ktor-serverCore = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktor" }
 ktor-serverNetty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktor" }
 ktor-serverTestHost = { module = "io.ktor:ktor-server-test-host-jvm", version.ref = "ktor" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 postgres-driver = { module = "org.postgresql:postgresql", version.ref = "postgres" }
+testcontainers-postgres = { module = "org.testcontainers:testcontainers-postgresql", version.ref= "testcontainers-postgres"}
 
 [plugins]
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
