@@ -33,9 +33,7 @@ jobs:
       if: (!cancelled())
       with:
         files: |
-          test-results/**/*.xml
-          test-results/**/*.trx
-          test-results/**/*.json
+          **/build/test-results/**/*.xml
 
   dependency-submission:
     runs-on: ubuntu-latest
