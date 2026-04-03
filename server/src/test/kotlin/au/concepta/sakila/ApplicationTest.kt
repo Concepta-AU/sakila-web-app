@@ -40,18 +40,7 @@ class ApplicationTest {
         }
     }
 
-    @Test
-    fun testRoot() = testApplication {
-        application {
-            module()
-        }
-        val response = client.get("/")
-        assertEquals(HttpStatusCode.OK, response.status)
-        assertEquals("OK", response.bodyAsText())
-    }
-
-    @Test
-    fun `all store IDs are listed`() = testApplication {
+    fun ApplicationTestBuilder.configureApplication() {
         environment {
             config = config.mergeWith(
                 MapApplicationConfig(
@@ -64,6 +53,19 @@ class ApplicationTest {
         application {
             module()
         }
+    }
+
+    @Test
+    fun testRoot() = testApplication {
+        configureApplication()
+        val response = client.get("/")
+        assertEquals(HttpStatusCode.OK, response.status)
+        assertEquals("Online", response.bodyAsText())
+    }
+
+    @Test
+    fun `all store IDs are listed`() = testApplication {
+        configureApplication()
         val response = client.get("/stores")
         assertEquals(HttpStatusCode.OK, response.status)
         val body = response.bodyAsText()
