@@ -20,6 +20,7 @@ dependencies {
     implementation(libs.hikari)
     implementation(libs.logback)
     implementation(libs.ktor.serverCore)
+    implementation(libs.ktor.serverDi)
     implementation(libs.ktor.serverNetty)
     implementation(libs.postgres.driver)
     testImplementation(libs.ktor.serverTestHost)

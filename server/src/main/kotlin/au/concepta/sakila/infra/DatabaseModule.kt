@@ -1,5 +1,7 @@
 package au.concepta.sakila.infra
 
+import io.ktor.server.application.*
+import io.ktor.server.plugins.di.*
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.config.*
@@ -10,6 +12,13 @@ import org.jooq.DSLContext
 import org.jooq.SQLDialect
 import org.jooq.impl.DSL
 
+fun Application.databaseModule() {
+    val config = environment.config.config("database")
+    dependencies {
+        provide<Database> { Database(config) }
+    }
+}
+
 class Database(config: ApplicationConfig) {
     val connectionPool: HikariDataSource
 
@@ -17,14 +26,14 @@ class Database(config: ApplicationConfig) {
         val databaseConfig = DatabaseConfig(config)
         connectionPool = HikariDataSource(
             HikariConfig()
-            .apply {
-                jdbcUrl = databaseConfig.url
-                username = databaseConfig.username
-                maximumPoolSize = databaseConfig.poolSize
-                password = databaseConfig.password
-                isAutoCommit = false
-            }
-            .also { it.validate() })
+                .apply {
+                    jdbcUrl = databaseConfig.url
+                    username = databaseConfig.username
+                    maximumPoolSize = databaseConfig.poolSize
+                    password = databaseConfig.password
+                    isAutoCommit = false
+                }
+                .also { it.validate() })
     }
 
     suspend fun <T> query(block: (DSLContext) -> T): T = withContext(Dispatchers.IO) {

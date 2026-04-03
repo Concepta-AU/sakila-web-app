@@ -1,5 +1,6 @@
 package au.concepta.sakila
 
+import au.concepta.sakila.infra.databaseModule
 import au.concepta.sakila.stores.storeModule
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -53,6 +54,7 @@ class ApplicationTest {
         }
         application {
             module()
+            databaseModule()
             storeModule()
         }
     }
