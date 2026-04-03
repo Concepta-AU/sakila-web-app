@@ -3,7 +3,7 @@ hikari = "7.0.2"
 kotlin = "2.2.20"
 ktor = "3.3.1"
 logback = "1.5.20"
-postgres = "42.7.8"
+postgres = "42.7.10"
 testcontainers-postgres = "2.0.4"
 
 [libraries]
