@@ -1,12 +1,17 @@
 package au.concepta.sakila
 
-import au.concepta.sakila.infra.databaseModule
-import au.concepta.sakila.stores.storeModule
+import au.concepta.sakila.infra.User
+import io.ktor.client.call.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.config.*
+import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.testing.*
+import kotlinx.serialization.Serializable
 import org.testcontainers.postgresql.PostgreSQLContainer
 import org.testcontainers.utility.MountableFile
 import java.nio.file.Files
@@ -43,19 +48,24 @@ class ApplicationTest {
     }
 
     fun ApplicationTestBuilder.configureApplication() {
+        install(CallLogging)
         environment {
-            config = config.mergeWith(
-                MapApplicationConfig(
-                    "database.url" to postgres.jdbcUrl,
-                    "database.username" to postgres.username,
-                    "database.password" to postgres.password
-                )
-            )
+            config =
+                ApplicationConfig("application.conf")
+                    .mergeWith(
+                        MapApplicationConfig(
+                            "database.url" to postgres.jdbcUrl,
+                            "database.username" to postgres.username,
+                            "database.password" to postgres.password
+                        )
+                    )
         }
-        application {
-            module()
-            databaseModule()
-            storeModule()
+        client = createClient {
+            install(ContentNegotiation) {
+                json()
+            }
+            install(Logging) {
+            }
         }
     }
 
@@ -70,11 +80,29 @@ class ApplicationTest {
     @Test
     fun `all store IDs are listed`() = testApplication {
         configureApplication()
-        val response = client.get("/stores")
+        val token = login(this)
+        val response = client.get("/stores") {
+            accept(ContentType.Application.Json)
+            headers {
+                append(HttpHeaders.Authorization, "Bearer $token")
+            }
+        }
         assertEquals(HttpStatusCode.OK, response.status)
         val body = response.bodyAsText()
         assertEquals("Store IDs: ", body.substring(0, 11))
         val storeIds = body.substring(11).split(",").map { it.trim().toInt() }
         assertEquals((0..499).toList(), storeIds)
     }
+
+    suspend fun login(builder: ApplicationTestBuilder): String {
+        val response = builder.client.post("/login") {
+            contentType(ContentType.Application.Json)
+            setBody(User("valentin.yundt", "password"))
+        }
+        val data: LoginResponse = response.body()
+        return data.token
+    }
+
+    @Serializable
+    data class LoginResponse(val token: String)
 }

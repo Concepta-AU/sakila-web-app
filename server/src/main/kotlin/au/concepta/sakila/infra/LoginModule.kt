@@ -15,6 +15,8 @@ import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
 import java.util.*
 
+const val STAFF_AUTH = "sakila-staff"
+
 fun Application.loginModule() {
     val database: Database by dependencies
 
@@ -24,7 +26,7 @@ fun Application.loginModule() {
     val jwtRealm = environment.config.property("jwt.realm").getString()
 
     authentication {
-        jwt {
+        jwt(STAFF_AUTH) {
             realm = jwtRealm
             verifier(
                 JWT

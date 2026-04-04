@@ -2,22 +2,25 @@ package au.concepta.sakila.stores
 
 import au.concepta.sakila.database.tables.references.STORE
 import au.concepta.sakila.infra.Database
-import io.ktor.server.application.Application
-import io.ktor.server.plugins.di.dependencies
-import io.ktor.server.response.respondText
-import io.ktor.server.routing.get
-import io.ktor.server.routing.routing
+import au.concepta.sakila.infra.STAFF_AUTH
+import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.plugins.di.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 
 fun Application.storeModule() {
     val database: Database by dependencies
 
     routing {
-        get("/stores") {
-            val storeList = database.query { ctx ->
-                ctx.selectFrom(STORE)
-                    .joinToString { it.storeId.toString() }
+        authenticate(STAFF_AUTH) {
+            get("/stores") {
+                val storeList = database.query { ctx ->
+                    ctx.selectFrom(STORE)
+                        .joinToString { it.storeId.toString() }
+                }
+                call.respondText("Store IDs: $storeList")
             }
-            call.respondText("Store IDs: $storeList")
         }
     }
 }
