@@ -9,5 +9,9 @@
   "scripts": {
     "build": "cd webApp && npm run build",
     "start": "cd webApp && npm run start"
+  },
+  "devDependencies": {
+    "@smui/button": "^8.0.3",
+    "@smui/textfield": "^8.0.3"
   }
 }

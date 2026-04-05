@@ -8,4 +8,5 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
+<h1>Sakila Store App</h1>
 {@render children()}
