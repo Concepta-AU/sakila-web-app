@@ -3,10 +3,10 @@ Sakila Sample Web App
 
 This project aims to create a sample web application that can be used to test web application test frameworks easily,
 in particular: our own [playwright-kotlin](https://github.com/Concepta-AU/playwright-kotlin). The goal is to have a
-single Docker image that starts a fully functional web application with enough complexity to make it useful for 
+single Docker image that starts a fully functional web application with enough complexity to make it useful for
 validating a test framework in terms of correctness and design.
 
-It is based on the [Sakila sample database](https://dev.mysql.com/doc/sakila/en/) in its 
+It is based on the [Sakila sample database](https://dev.mysql.com/doc/sakila/en/) in its
 [PostgreSQL version](https://github.com/devrimgunduz/pagila).
 
 This is a Kotlin Multiplatform project targeting Web, Server.
@@ -17,8 +17,22 @@ This is a Kotlin Multiplatform project targeting Web, Server.
   The most important subfolder is [commonMain](./shared/src/commonMain/kotlin). If preferred, you
   can add code to the platform-specific folders here too.
 
-* [/webApp](./webApp) contains web React application. It uses the Kotlin/JS library produced
+* [/webApp](./webApp) contains a Svelte application. It uses the Kotlin/JS library produced
   by the [shared](./shared) module.
+
+To start a local instance, start the database, the backend, and the web application as per the instructions below.
+Afterward the application should be accessible at http://localhost:5173/
+
+The setup uses ports 15432, 8080, and 5173, so these must be free.
+
+### Run the Database
+
+To run up a local copy of the Sakila database, make sure you have Docker installed and run this command from the root
+of the repository:
+
+```shell
+docker compose up
+```
 
 ### Build and Run Server
 
@@ -52,9 +66,5 @@ in your IDE’s toolbar or run it directly from the terminal:
 3. Build and run the web application
    ```shell
    npm install
-   npm run start
+   npm run dev
    ```
-
----
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
