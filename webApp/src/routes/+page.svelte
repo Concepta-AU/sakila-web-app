@@ -21,7 +21,7 @@
 	}
 </script>
 
-<h2>Login</h2>
+<h5>Login</h5>
 <div class="columns margins">
 	<div>
 		<Textfield bind:value={username} label="Username" />
@@ -40,10 +40,10 @@
 </div>
 
 <style>
-	.error {
-		background: darkred;
-		color: whitesmoke;
-		margin: 1rem;
-		padding: 1rem;
-	}
+    .error {
+        background: darkred;
+        color: whitesmoke;
+        margin: 1rem;
+        padding: 1rem;
+    }
 </style>
