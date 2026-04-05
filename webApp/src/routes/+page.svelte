@@ -6,9 +6,19 @@
 	let password = $state('');
 	let error = $state('');
 
-	const login = () => {
-		error = 'Not yet implemented';
-	};
+	async function login() {
+		const response = await fetch('/api/login', {
+			method: 'POST',
+			body: JSON.stringify({ username, password }),
+			headers: { 'Content-Type': 'application/json' }
+		});
+		if (response.status !== 200) {
+			error = await response.text();
+		} else {
+			const result = await response.json();
+			console.log(result);
+		}
+	}
 </script>
 
 <h2>Login</h2>
