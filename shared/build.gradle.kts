@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-
+    kotlin("plugin.serialization").version("2.2.20")
 }
 
 kotlin {
@@ -18,7 +18,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            implementation(libs.ktor.serialization)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
