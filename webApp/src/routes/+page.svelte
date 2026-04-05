@@ -40,10 +40,10 @@
 </div>
 
 <style>
-    .error {
-        background: darkred;
-        color: whitesmoke;
-        margin: 1rem;
-        padding: 1rem;
-    }
+	.error {
+		background: darkred;
+		color: whitesmoke;
+		margin: 1rem;
+		padding: 1rem;
+	}
 </style>
