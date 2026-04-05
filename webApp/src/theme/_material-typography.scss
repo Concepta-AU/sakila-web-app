@@ -3,51 +3,57 @@
 
 html,
 body {
-	@include typography.typography('body1');
+  @include typography.typography('body1');
 }
 
 h1 {
-	@include typography.typography('headline1');
+  @include typography.typography('headline1');
+  margin: 0;
 }
 
 h2 {
-	@include typography.typography('headline2');
+  @include typography.typography('headline2');
+  margin: 0;
 }
 
 h3 {
-	@include typography.typography('headline3');
+  @include typography.typography('headline3');
+  margin: 0;
 }
 
 h4 {
-	@include typography.typography('headline4');
+  @include typography.typography('headline4');
+  margin: 0;
 }
 
 h5 {
-	@include typography.typography('headline5');
+  @include typography.typography('headline5');
+  margin: 0;
 }
 
 h6 {
-	@include typography.typography('headline6');
+  @include typography.typography('headline6');
+  margin: 0;
 }
 
 caption {
-	@include typography.typography('caption');
+  @include typography.typography('caption');
 }
 
 code,
 pre {
-	font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
 }
 
 small {
-	font-size: 0.9em;
+  font-size: 0.9em;
 }
 
 big {
-	font-size: 1.1em;
+  font-size: 1.1em;
 }
 
 b,
 strong {
-	font-weight: bold;
+  font-weight: bold;
 }
