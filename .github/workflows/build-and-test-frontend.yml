@@ -22,8 +22,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-      # Running `npm ci` seems to be missing out on the Svelte-MUI dev files and fails the check step
-      - run: npm install --include=dev
+      - run: npm ci
       - run: npm run lint
       - run: npm run check
       - run: npm run build
