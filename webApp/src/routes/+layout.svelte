@@ -2,9 +2,10 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { onMount, setContext } from 'svelte';
 	import { goto } from '$app/navigation';
+	import type { User } from 'shared';
 
 	let { children } = $props();
-	let user = $state<any>({});
+	let user = $state<User | null>(null);
 
 	setContext('user', {
 		get: () => user,
@@ -12,7 +13,7 @@
 	});
 
 	onMount(() => {
-		if (!user.token) {
+		if (!user) {
 			goto('/login');
 		}
 	});

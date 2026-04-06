@@ -23,6 +23,9 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        all {
+            languageSettings.optIn("kotlin.js.ExperimentalJsExport")
+        }
     }
 }
 

@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
+	import type { User } from 'shared';
 
-	let user = getContext<any>('user');
+	let user = getContext<User>('user');
 </script>
 
-<p>Welcome {user.get().firstName}</p>
+<p>Welcome {user.firstName}</p>
