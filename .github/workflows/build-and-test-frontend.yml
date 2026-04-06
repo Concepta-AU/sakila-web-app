@@ -29,8 +29,9 @@ jobs:
         uses: gradle/actions/setup-gradle@39e147cb9de83bb9910b8ef8bd7fff0ee20fcd6f # v6.0.1
 
       - name: Build shared libraries
+        working-directory: .
         run:
-          ../gradlew :shared:jsBrowserDevelopmentLibraryDistribution
+          ./gradlew :shared:jsBrowserDevelopmentLibraryDistribution
 
       - uses: actions/setup-node@v6
         with:
