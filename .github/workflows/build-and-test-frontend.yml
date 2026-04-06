@@ -30,7 +30,7 @@ jobs:
 
       - name: Build shared libraries
         run:
-          ./gradlew :shared:jsBrowserDevelopmentLibraryDistribution
+          ../gradlew :shared:jsBrowserDevelopmentLibraryDistribution
 
       - uses: actions/setup-node@v6
         with:
