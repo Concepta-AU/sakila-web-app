@@ -19,6 +19,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@39e147cb9de83bb9910b8ef8bd7fff0ee20fcd6f # v6.0.1
+
+      - name: Build shared libraries
+        run:
+          ./gradlew :shared:jsBrowserDevelopmentLibraryDistribution
+
       - uses: actions/setup-node@v6
         with:
           node-version: 24
