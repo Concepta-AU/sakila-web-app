@@ -1,6 +1,6 @@
 package au.concepta.sakila
 
-import au.concepta.sakila.infra.User
+import au.concepta.sakila.infra.LoginRequest
 import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
@@ -11,7 +11,6 @@ import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.config.*
 import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.testing.*
-import kotlinx.serialization.Serializable
 import org.testcontainers.postgresql.PostgreSQLContainer
 import org.testcontainers.utility.MountableFile
 import java.nio.file.Files
@@ -97,12 +96,9 @@ class ApplicationTest {
     suspend fun login(builder: ApplicationTestBuilder): String {
         val response = builder.client.post("/login") {
             contentType(ContentType.Application.Json)
-            setBody(User("valentin.yundt", "password"))
+            setBody(LoginRequest("valentin.yundt", "password"))
         }
-        val data: LoginResponse = response.body()
+        val data: User = response.body()
         return data.token
     }
-
-    @Serializable
-    data class LoginResponse(val token: String)
 }
