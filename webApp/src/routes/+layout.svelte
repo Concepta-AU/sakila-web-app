@@ -9,7 +9,7 @@
 
 	setContext('user', {
 		get: () => user,
-		set: (newUser: any) => user = newUser
+		set: (newUser: any) => (user = newUser)
 	});
 
 	onMount(() => {
@@ -24,4 +24,12 @@
 </svelte:head>
 
 <h3>Sakila Store App</h3>
-{@render children()}
+<div class="content">
+	{@render children()}
+</div>
+
+<style>
+	.content {
+		padding: 1rem;
+	}
+</style>
