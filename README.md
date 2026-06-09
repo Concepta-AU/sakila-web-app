@@ -34,6 +34,9 @@ of the repository:
 docker compose up
 ```
 
+This will start a PostgreSQL database and open the local port 15432 to connect to. The user is `postgres`, and the 
+password is `not_secure`.
+
 ### Build and Run Server
 
 To build and run the development version of the server, use the run configuration from the run widget

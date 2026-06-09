@@ -17,9 +17,9 @@ fun Application.storeModule() {
             get("/stores") {
                 val storeList = database.query { ctx ->
                     ctx.selectFrom(STORE)
-                        .joinToString { it.storeId.toString() }
+                        .mapNotNull { it.storeId }
                 }
-                call.respondText("Store IDs: $storeList")
+                call.respond(storeList)
             }
         }
     }

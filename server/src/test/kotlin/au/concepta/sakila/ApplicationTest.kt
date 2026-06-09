@@ -87,9 +87,7 @@ class ApplicationTest {
             }
         }
         assertEquals(HttpStatusCode.OK, response.status)
-        val body = response.bodyAsText()
-        assertEquals("Store IDs: ", body.substring(0, 11))
-        val storeIds = body.substring(11).split(",").map { it.trim().toInt() }
+        val storeIds: List<Int> = response.body()
         assertEquals((0..499).toList(), storeIds)
     }
 
