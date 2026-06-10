@@ -30,7 +30,7 @@
 		try {
 			const response = await fetch('/api/stores', {
 				headers: {
-					'Authorization': `Bearer ${token}`
+					Authorization: `Bearer ${token}`
 				}
 			});
 			if (response.ok) {
@@ -40,10 +40,10 @@
 					selectedStoreId = data[0];
 				}
 			} else {
-				console.error("Failed to fetch stores: status", response.status);
+				console.error('Failed to fetch stores: status', response.status);
 			}
 		} catch (error) {
-			console.error("Failed to fetch stores", error);
+			console.error('Failed to fetch stores', error);
 		}
 	}
 
@@ -67,16 +67,18 @@
 			<a class="navbar-brand d-flex align-items-center gap-2" href="/">
 				<span class="fs-4 fw-bold text-gradient">Sakila Store</span>
 			</a>
-			
+
 			<div class="d-flex align-items-center gap-3">
 				{#if stores.length > 0}
 					<div class="d-flex align-items-center gap-2">
-						<label for="storeSelector" class="text-white-50 small mb-0 text-nowrap">Active Store:</label>
-						<select 
-							id="storeSelector" 
-							class="form-select form-select-sm bg-secondary text-white border-0 select-custom" 
-							value={selectedStoreId} 
-							onchange={(e) => selectedStoreId = parseInt(e.currentTarget.value)}
+						<label for="storeSelector" class="text-white-50 small mb-0 text-nowrap"
+							>Active Store:</label
+						>
+						<select
+							id="storeSelector"
+							class="form-select form-select-sm bg-secondary text-white border-0 select-custom"
+							value={selectedStoreId}
+							onchange={(e) => (selectedStoreId = parseInt(e.currentTarget.value))}
 						>
 							{#each stores as storeId}
 								<option value={storeId}>Store #{storeId}</option>
@@ -84,7 +86,7 @@
 						</select>
 					</div>
 				{/if}
-				
+
 				<div class="text-white small border-start ps-3 border-secondary">
 					Logged in as: <strong class="text-info">{user.firstName} {user.lastName}</strong>
 				</div>
@@ -114,7 +116,7 @@
 		font-weight: 500;
 		transition: background-color 0.2s ease;
 	}
-	
+
 	.select-custom:hover {
 		background-color: #495057 !important;
 	}

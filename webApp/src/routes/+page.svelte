@@ -19,10 +19,13 @@
 							Manage rentals, customers, and inventory for your designated store location.
 						</p>
 						<hr class="my-4" />
-						
+
 						{#if selectedStoreId !== null}
 							<div class="d-flex align-items-center gap-3">
-								<div class="p-3 bg-primary text-white rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width: 55px; height: 55px;">
+								<div
+									class="p-3 bg-primary text-white rounded-circle shadow-sm d-flex align-items-center justify-content-center"
+									style="width: 55px; height: 55px;"
+								>
 									<span class="fs-4 fw-bold">{selectedStoreId}</span>
 								</div>
 								<div>
@@ -31,7 +34,9 @@
 								</div>
 							</div>
 						{:else}
-							<p class="text-warning">No store location selected. Please select a store from the navigation bar.</p>
+							<p class="text-warning">
+								No store location selected. Please select a store from the navigation bar.
+							</p>
 						{/if}
 					</div>
 				</div>
