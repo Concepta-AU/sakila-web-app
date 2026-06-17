@@ -2,11 +2,11 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { onMount, setContext } from 'svelte';
 	import { goto } from '$app/navigation';
-	import type { User } from 'shared';
+	import type { Store, User } from 'shared';
 
 	let { children } = $props();
 	let user = $state<User | null>(null);
-	let stores = $state<number[]>([]);
+	let stores = $state<Store[]>([]);
 	let selectedStoreId = $state<number | null>(null);
 
 	setContext('user', {
@@ -34,10 +34,10 @@
 				}
 			});
 			if (response.ok) {
-				const data = await response.json();
+				const data: Store[] = await response.json();
 				stores = data;
 				if (data.length > 0) {
-					selectedStoreId = data[0];
+					selectedStoreId = data[0].storeId;
 				}
 			} else {
 				console.error('Failed to fetch stores: status', response.status);
@@ -72,16 +72,16 @@
 				{#if stores.length > 0}
 					<div class="d-flex align-items-center gap-2">
 						<label for="storeSelector" class="text-white-50 small mb-0 text-nowrap"
-							>Active Store:</label
+						>Active Store:</label
 						>
 						<select
 							id="storeSelector"
 							class="form-select form-select-sm bg-secondary text-white border-0 select-custom"
-							value={selectedStoreId}
 							onchange={(e) => (selectedStoreId = parseInt(e.currentTarget.value))}
 						>
-							{#each stores as storeId}
-								<option value={storeId}>Store #{storeId}</option>
+							{#each stores as store}
+								<option value={store.storeId} selected={store.storeId === selectedStoreId}>Store #{store.storeId}
+									– {store.address}</option>
 							{/each}
 						</select>
 					</div>
@@ -100,29 +100,29 @@
 </div>
 
 <style>
-	.content {
-		padding: 1rem;
-	}
+    .content {
+        padding: 1rem;
+    }
 
-	.text-gradient {
-		background: linear-gradient(45deg, #0d6efd, #0dcaf0);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-	}
+    .text-gradient {
+        background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 
-	.select-custom {
-		width: 8rem;
-		cursor: pointer;
-		font-weight: 500;
-		transition: background-color 0.2s ease;
-	}
+    .select-custom {
+        width: 16rem;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.2s ease;
+    }
 
-	.select-custom:hover {
-		background-color: #495057 !important;
-	}
+    .select-custom:hover {
+        background-color: #495057 !important;
+    }
 
-	.select-custom:focus {
-		box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
-		border-color: #0dcaf0;
-	}
+    .select-custom:focus {
+        box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+        border-color: #0dcaf0;
+    }
 </style>
