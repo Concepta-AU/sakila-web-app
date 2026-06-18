@@ -79,10 +79,10 @@
 						<dt class="col-sm-4">Special Features</dt>
 						<dd class="col-sm-8">{(film.specialFeatures as unknown as string[]).join(', ')}</dd>
 					{/if}
-					{#if Array.from(film.actors).length > 0}
+					{#if (film.actors as unknown as Actor[]).length > 0}
 						<dt class="col-sm-4">Actors</dt>
 						<dd class="col-sm-8">
-							{(Array.from(film.actors) as Actor[])
+							{(film.actors as unknown as Actor[])
 								.map((a) => `${a.firstName} ${a.lastName}`)
 								.join(', ')}
 						</dd>
