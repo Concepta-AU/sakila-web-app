@@ -87,8 +87,8 @@ class ApplicationTest {
             }
         }
         assertEquals(HttpStatusCode.OK, response.status)
-        val storeIds: List<Int> = response.body()
-        assertEquals((0..499).toList(), storeIds)
+        val stores: List<Store> = response.body()
+        assertEquals((0..499).toList(), stores.map { it.storeId })
     }
 
     suspend fun login(builder: ApplicationTestBuilder): String {
