@@ -75,9 +75,9 @@
 					<dd class="col-sm-8">${film.rentalRate.toFixed(2)}</dd>
 					<dt class="col-sm-4">Replacement Cost</dt>
 					<dd class="col-sm-8">${film.replacementCost.toFixed(2)}</dd>
-					{#if film.specialFeatures != null && film.specialFeatures.length > 0}
+					{#if film.specialFeatures != null && Array.from(film.specialFeatures).length > 0}
 						<dt class="col-sm-4">Special Features</dt>
-						<dd class="col-sm-8">{film.specialFeatures.join(', ')}</dd>
+						<dd class="col-sm-8">{Array.from(film.specialFeatures).join(', ')}</dd>
 					{/if}
 				</dl>
 			</div>
