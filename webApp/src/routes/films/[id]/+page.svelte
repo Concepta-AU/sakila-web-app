@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { page } from '$app/stores';
-	import type { Film } from 'shared';
+	import type { Actor, Film } from 'shared';
 
 	let userContext = getContext<any>('user');
 	let user = $derived(userContext.get());
@@ -75,9 +75,17 @@
 					<dd class="col-sm-8">${film.rentalRate.toFixed(2)}</dd>
 					<dt class="col-sm-4">Replacement Cost</dt>
 					<dd class="col-sm-8">${film.replacementCost.toFixed(2)}</dd>
-					{#if film.specialFeatures != null && Array.from(film.specialFeatures).length > 0}
+					{#if film.specialFeatures != null && (film.specialFeatures as unknown as string[]).length > 0}
 						<dt class="col-sm-4">Special Features</dt>
-						<dd class="col-sm-8">{Array.from(film.specialFeatures).join(', ')}</dd>
+						<dd class="col-sm-8">{(film.specialFeatures as unknown as string[]).join(', ')}</dd>
+					{/if}
+					{#if Array.from(film.actors).length > 0}
+						<dt class="col-sm-4">Actors</dt>
+						<dd class="col-sm-8">
+							{(Array.from(film.actors) as Actor[])
+								.map((a) => `${a.firstName} ${a.lastName}`)
+								.join(', ')}
+						</dd>
 					{/if}
 				</dl>
 			</div>

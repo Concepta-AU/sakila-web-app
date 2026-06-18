@@ -18,4 +18,5 @@ data class Film(
     val replacementCost: Double,
     val rating: String?,
     val specialFeatures: List<String?>?,
+    val actors: List<Actor>,
 )
