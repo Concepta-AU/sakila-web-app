@@ -31,7 +31,7 @@ jobs:
       - name: Build shared libraries
         working-directory: .
         run:
-          ./gradlew :shared:jsBrowserDevelopmentLibraryDistribution
+          ./gradlew kotlinUpgradeYarnLock :shared:jsBrowserDevelopmentLibraryDistribution
 
       - name: Stop Gradle Daemon
         working-directory: .
