@@ -34,7 +34,11 @@
 									<h4 class="mb-0 text-secondary">Active Store Location</h4>
 									{#if selectedStore}
 										<p class="mb-0 text-muted">
-											{selectedStore.address}{selectedStore.address2 ? ', ' + selectedStore.address2 : ''}, {selectedStore.district}{selectedStore.postalCode ? ' ' + selectedStore.postalCode : ''}
+											{selectedStore.address}{selectedStore.address2
+												? ', ' + selectedStore.address2
+												: ''}, {selectedStore.district}{selectedStore.postalCode
+												? ' ' + selectedStore.postalCode
+												: ''}
 										</p>
 									{/if}
 								</div>

@@ -142,7 +142,7 @@
 				{#if stores.length > 0}
 					<div class="d-flex align-items-center gap-2">
 						<label for="storeSelector" class="text-white-50 small mb-0 text-nowrap"
-						>Active Store:</label
+							>Active Store:</label
 						>
 						<select
 							id="storeSelector"
@@ -150,8 +150,10 @@
 							onchange={(e) => (selectedStoreId = parseInt(e.currentTarget.value))}
 						>
 							{#each stores as store}
-								<option value={store.storeId} selected={store.storeId === selectedStoreId}>Store #{store.storeId}
-									– {store.address}</option>
+								<option value={store.storeId} selected={store.storeId === selectedStoreId}
+									>Store #{store.storeId}
+									– {store.address}</option
+								>
 							{/each}
 						</select>
 					</div>
@@ -170,78 +172,78 @@
 </div>
 
 <style>
-    .content {
-        padding: 1rem;
-    }
+	.content {
+		padding: 1rem;
+	}
 
-    .text-gradient {
-        background: linear-gradient(45deg, #0d6efd, #0dcaf0);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+	.text-gradient {
+		background: linear-gradient(45deg, #0d6efd, #0dcaf0);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
 
-    .select-custom {
-        width: 16rem;
-        cursor: pointer;
-        font-weight: 500;
-        transition: background-color 0.2s ease;
-    }
+	.select-custom {
+		width: 16rem;
+		cursor: pointer;
+		font-weight: 500;
+		transition: background-color 0.2s ease;
+	}
 
-    .select-custom:hover {
-        background-color: #495057 !important;
-    }
+	.select-custom:hover {
+		background-color: #495057 !important;
+	}
 
-    .select-custom:focus {
-        box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
-        border-color: #0dcaf0;
-    }
+	.select-custom:focus {
+		box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+		border-color: #0dcaf0;
+	}
 
-    .search-wrapper {
-        width: 18rem;
-    }
+	.search-wrapper {
+		width: 18rem;
+	}
 
-    .search-input {
-        background-color: #495057;
-        color: #fff;
-        border: none;
-    }
+	.search-input {
+		background-color: #495057;
+		color: #fff;
+		border: none;
+	}
 
-    .search-input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-    }
+	.search-input::placeholder {
+		color: rgba(255, 255, 255, 0.5);
+	}
 
-    .search-input:focus {
-        background-color: #495057;
-        color: #fff;
-        box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
-    }
+	.search-input:focus {
+		background-color: #495057;
+		color: #fff;
+		box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+	}
 
-    .search-dropdown {
-        position: absolute;
-        top: calc(100% + 4px);
-        left: 0;
-        right: 0;
-        background: #2b2d31;
-        border: 1px solid #444;
-        border-radius: 0.375rem;
-        max-height: 16rem;
-        overflow-y: auto;
-        z-index: 1050;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
+	.search-dropdown {
+		position: absolute;
+		top: calc(100% + 4px);
+		left: 0;
+		right: 0;
+		background: #2b2d31;
+		border: 1px solid #444;
+		border-radius: 0.375rem;
+		max-height: 16rem;
+		overflow-y: auto;
+		z-index: 1050;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+	}
 
-    .search-dropdown-item {
-        display: block;
-        padding: 0.5rem 0.75rem;
-        color: #e0e0e0;
-        background: transparent;
-        border: none;
-        font-size: 0.875rem;
-        cursor: pointer;
-    }
+	.search-dropdown-item {
+		display: block;
+		padding: 0.5rem 0.75rem;
+		color: #e0e0e0;
+		background: transparent;
+		border: none;
+		font-size: 0.875rem;
+		cursor: pointer;
+	}
 
-    .search-dropdown-item:hover {
-        background-color: #0d6efd;
-        color: #fff;
-    }
+	.search-dropdown-item:hover {
+		background-color: #0d6efd;
+		color: #fff;
+	}
 </style>
