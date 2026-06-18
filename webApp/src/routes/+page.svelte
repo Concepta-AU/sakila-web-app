@@ -6,6 +6,8 @@
 
 	let user = $derived(userContext.get());
 	let selectedStoreId = $derived(storeContext.getSelected());
+	let stores = $derived(storeContext.getStores());
+	let selectedStore = $derived(stores.find((s: any) => s.storeId === selectedStoreId) ?? null);
 </script>
 
 {#if user}
@@ -30,7 +32,11 @@
 								</div>
 								<div>
 									<h4 class="mb-0 text-secondary">Active Store Location</h4>
-									<p class="mb-0 text-muted">Currently managing Store ID #{selectedStoreId}</p>
+									{#if selectedStore}
+										<p class="mb-0 text-muted">
+											{selectedStore.address}{selectedStore.address2 ? ', ' + selectedStore.address2 : ''}, {selectedStore.district}{selectedStore.postalCode ? ' ' + selectedStore.postalCode : ''}
+										</p>
+									{/if}
 								</div>
 							</div>
 						{:else}
