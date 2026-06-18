@@ -22,16 +22,38 @@ fun Application.filmModule() {
                         FILM.FILM_ID,
                         FILM.TITLE,
                         FILM.DESCRIPTION,
+                        FILM.RELEASE_YEAR,
+                        FILM.LANGUAGE_ID,
+                        FILM.ORIGINAL_LANGUAGE_ID,
+                        FILM.RENTAL_DURATION,
+                        FILM.RENTAL_RATE,
+                        FILM.LENGTH,
+                        FILM.REPLACEMENT_COST,
+                        FILM.RATING,
+                        FILM.SPECIAL_FEATURES,
                     )
                         .from(FILM)
                         .where(FILM.TITLE.likeIgnoreCase("%$title%"))
                         .mapNotNull { record ->
                             val filmId = record[FILM.FILM_ID] ?: return@mapNotNull null
                             val filmTitle = record[FILM.TITLE] ?: return@mapNotNull null
+                            val languageId = record[FILM.LANGUAGE_ID] ?: return@mapNotNull null
+                            val rentalDuration = record[FILM.RENTAL_DURATION] ?: return@mapNotNull null
+                            val rentalRate = record[FILM.RENTAL_RATE] ?: return@mapNotNull null
+                            val replacementCost = record[FILM.REPLACEMENT_COST] ?: return@mapNotNull null
                             Film(
                                 filmId = filmId,
                                 title = filmTitle,
                                 description = record[FILM.DESCRIPTION],
+                                releaseYear = record[FILM.RELEASE_YEAR],
+                                languageId = languageId,
+                                originalLanguageId = record[FILM.ORIGINAL_LANGUAGE_ID],
+                                rentalDuration = rentalDuration,
+                                rentalRate = rentalRate.toDouble(),
+                                length = record[FILM.LENGTH],
+                                replacementCost = replacementCost.toDouble(),
+                                rating = record[FILM.RATING]?.literal,
+                                specialFeatures = record[FILM.SPECIAL_FEATURES]?.toList(),
                             )
                         }
                 }

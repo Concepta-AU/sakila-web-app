@@ -55,6 +55,31 @@
 				{:else}
 					<p class="text-muted fst-italic">No description available.</p>
 				{/if}
+				<hr />
+				<dl class="row mt-3">
+					{#if film.releaseYear != null}
+						<dt class="col-sm-4">Release Year</dt>
+						<dd class="col-sm-8">{film.releaseYear}</dd>
+					{/if}
+					{#if film.rating != null}
+						<dt class="col-sm-4">Rating</dt>
+						<dd class="col-sm-8">{film.rating}</dd>
+					{/if}
+					{#if film.length != null}
+						<dt class="col-sm-4">Length</dt>
+						<dd class="col-sm-8">{film.length} min</dd>
+					{/if}
+					<dt class="col-sm-4">Rental Duration</dt>
+					<dd class="col-sm-8">{film.rentalDuration} days</dd>
+					<dt class="col-sm-4">Rental Rate</dt>
+					<dd class="col-sm-8">${film.rentalRate.toFixed(2)}</dd>
+					<dt class="col-sm-4">Replacement Cost</dt>
+					<dd class="col-sm-8">${film.replacementCost.toFixed(2)}</dd>
+					{#if film.specialFeatures != null && film.specialFeatures.length > 0}
+						<dt class="col-sm-4">Special Features</dt>
+						<dd class="col-sm-8">{film.specialFeatures.join(', ')}</dd>
+					{/if}
+				</dl>
 			</div>
 		</div>
 	{/if}
