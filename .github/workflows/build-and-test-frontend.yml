@@ -34,6 +34,7 @@ jobs:
           ./gradlew :shared:jsBrowserDevelopmentLibraryDistribution
 
       - name: Stop Gradle Daemon
+        working-directory: .
         run: ./gradlew --stop
 
       - uses: actions/setup-node@v6
