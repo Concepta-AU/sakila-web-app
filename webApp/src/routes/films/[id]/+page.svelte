@@ -6,6 +6,9 @@
 	let userContext = getContext<any>('user');
 	let user = $derived(userContext.get());
 
+	let storeContext = getContext<any>('store');
+	let selectedStoreId = $derived(storeContext.getSelected());
+
 	let film = $state<Film | null>(null);
 	let loading = $state(true);
 	let error = $state('');
@@ -15,16 +18,19 @@
 
 	$effect(() => {
 		if (user && filmId) {
+			void selectedStoreId; // track store changes
 			loading = true;
 			error = '';
 			film = null;
 			const query = titleHint || '';
-			fetch(`/api/films/search?title=${encodeURIComponent(query)}`, {
+			const storeParam = selectedStoreId != null ? `&storeId=${selectedStoreId}` : '';
+			fetch(`/api/films/search?title=${encodeURIComponent(query)}${storeParam}`, {
 				headers: { Authorization: `Bearer ${user.token}` }
 			})
 				.then((r) => r.json())
 				.then((films: Film[]) => {
 					film = films.find((f) => f.filmId === filmId) ?? null;
+					// re-fetch if store changes after initial load
 					if (!film) error = 'Film not found.';
 				})
 				.catch(() => {
@@ -86,6 +92,10 @@
 								.map((a) => `${a.firstName} ${a.lastName}`)
 								.join(', ')}
 						</dd>
+					{/if}
+					{#if film.copiesAvailable != null}
+						<dt class="col-sm-4">Copies Available</dt>
+						<dd class="col-sm-8">{film.copiesAvailable}</dd>
 					{/if}
 				</dl>
 			</div>

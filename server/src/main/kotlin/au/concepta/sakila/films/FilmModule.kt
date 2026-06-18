@@ -5,6 +5,7 @@ import au.concepta.sakila.Film
 import au.concepta.sakila.database.tables.references.ACTOR
 import au.concepta.sakila.database.tables.references.FILM
 import au.concepta.sakila.database.tables.references.FILM_ACTOR
+import au.concepta.sakila.database.tables.references.FILM_IN_STOCK
 import au.concepta.sakila.infra.Database
 import au.concepta.sakila.infra.STAFF_AUTH
 import io.ktor.server.application.*
@@ -20,6 +21,7 @@ fun Application.filmModule() {
         authenticate(STAFF_AUTH) {
             get("/films/search") {
                 val title = call.request.queryParameters["title"] ?: ""
+                val storeId = call.request.queryParameters["storeId"]?.toIntOrNull()
                 val filmList = database.query { ctx ->
                     ctx.select(
                         FILM.FILM_ID,
@@ -59,6 +61,11 @@ fun Application.filmModule() {
                                 val lastName = record[ACTOR.LAST_NAME] ?: return@mapNotNull null
                                 Actor(actorId = actorId, firstName = firstName, lastName = lastName)
                             }
+                            val copiesAvailable = if (storeId != null) {
+                                ctx.selectFrom(FILM_IN_STOCK.call(filmId, storeId))
+                                    .fetch()
+                                    .size
+                            } else null
                             Film(
                                 filmId = filmId,
                                 title = filmTitle,
@@ -73,6 +80,7 @@ fun Application.filmModule() {
                                 rating = first[FILM.RATING]?.literal,
                                 specialFeatures = first[FILM.SPECIAL_FEATURES]?.toList(),
                                 actors = actors,
+                                copiesAvailable = copiesAvailable,
                             )
                         }
                 }
