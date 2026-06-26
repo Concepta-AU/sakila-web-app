@@ -30,7 +30,7 @@ dependencies {
     implementation(libs.ktor.serverNetty)
     implementation(libs.postgres.driver)
     implementation("at.favre.lib:bcrypt:0.10.2")
-    implementation("io.ktor:ktor-client-logging:3.5.0")
+    implementation("io.ktor:ktor-client-logging:3.5.1")
     testImplementation(libs.ktor.clientContentNegotiation)
     testImplementation(libs.ktor.serverTestHost)
     testImplementation(libs.kotlin.testJunit)
